@@ -1,0 +1,1286 @@
+{
+  "format": "BaldiAnimStudioProject",
+  "version": 1,
+  "source": "baldi_source.an8",
+  "fps": 24,
+  "duration": 40,
+  "tracks": {
+    "RArm1": {
+      "rz": [
+        {
+          "f": 0,
+          "v": 0,
+          "type": "smooth"
+        },
+        {
+          "f": 6,
+          "v": -88,
+          "type": "smooth"
+        },
+        {
+          "f": 32,
+          "v": -88,
+          "type": "smooth"
+        },
+        {
+          "f": 40,
+          "v": 0,
+          "type": "smooth"
+        }
+      ],
+      "rx": [
+        {
+          "f": 0,
+          "v": 0,
+          "type": "smooth"
+        },
+        {
+          "f": 6,
+          "v": -5,
+          "type": "smooth"
+        },
+        {
+          "f": 32,
+          "v": -5,
+          "type": "smooth"
+        },
+        {
+          "f": 40,
+          "v": 0,
+          "type": "smooth"
+        }
+      ]
+    },
+    "RArm2": {
+      "rz": [
+        {
+          "f": 0,
+          "v": 0,
+          "type": "smooth"
+        },
+        {
+          "f": 6,
+          "v": -10,
+          "type": "smooth"
+        },
+        {
+          "f": 10,
+          "v": 20,
+          "type": "smooth"
+        },
+        {
+          "f": 14,
+          "v": -20,
+          "type": "smooth"
+        },
+        {
+          "f": 18,
+          "v": 20,
+          "type": "smooth"
+        },
+        {
+          "f": 22,
+          "v": -20,
+          "type": "smooth"
+        },
+        {
+          "f": 26,
+          "v": 20,
+          "type": "smooth"
+        },
+        {
+          "f": 30,
+          "v": -12,
+          "type": "smooth"
+        },
+        {
+          "f": 34,
+          "v": 0,
+          "type": "smooth"
+        },
+        {
+          "f": 40,
+          "v": 0,
+          "type": "smooth"
+        }
+      ]
+    },
+    "RHand": {
+      "rz": [
+        {
+          "f": 0,
+          "v": 0,
+          "type": "smooth"
+        },
+        {
+          "f": 6,
+          "v": 8,
+          "type": "smooth"
+        },
+        {
+          "f": 10,
+          "v": -15,
+          "type": "smooth"
+        },
+        {
+          "f": 14,
+          "v": 15,
+          "type": "smooth"
+        },
+        {
+          "f": 18,
+          "v": -15,
+          "type": "smooth"
+        },
+        {
+          "f": 22,
+          "v": 15,
+          "type": "smooth"
+        },
+        {
+          "f": 26,
+          "v": -15,
+          "type": "smooth"
+        },
+        {
+          "f": 30,
+          "v": 10,
+          "type": "smooth"
+        },
+        {
+          "f": 34,
+          "v": 0,
+          "type": "smooth"
+        },
+        {
+          "f": 40,
+          "v": 0,
+          "type": "smooth"
+        }
+      ]
+    },
+    "Head": {
+      "rz": [
+        {
+          "f": 0,
+          "v": 0,
+          "type": "smooth"
+        },
+        {
+          "f": 8,
+          "v": 2,
+          "type": "smooth"
+        },
+        {
+          "f": 16,
+          "v": -1.5,
+          "type": "smooth"
+        },
+        {
+          "f": 24,
+          "v": 2,
+          "type": "smooth"
+        },
+        {
+          "f": 32,
+          "v": 0,
+          "type": "smooth"
+        },
+        {
+          "f": 40,
+          "v": 0,
+          "type": "smooth"
+        }
+      ]
+    }
+  },
+  "parts": {
+    "Body": {
+      "parent": "Root",
+      "visible": true,
+      "pivot": [
+        0.0,
+        6.977,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "RArm2": {
+      "parent": "RArm1",
+      "visible": true,
+      "pivot": [
+        -97.31835,
+        143.25321,
+        0.89121
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "RArm1": {
+      "parent": "Body",
+      "visible": true,
+      "pivot": [
+        -36.79018,
+        143.43499,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "RHand": {
+      "parent": "RArm2",
+      "visible": true,
+      "pivot": [
+        -161.63873,
+        143.33501,
+        2.43683
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "RThumb1": {
+      "parent": "RHand",
+      "visible": true,
+      "pivot": [
+        -166.08147,
+        157.31262,
+        1.83557
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "RThumb2": {
+      "parent": "RThumb1",
+      "visible": true,
+      "pivot": [
+        -165.95657,
+        167.60283,
+        1.86124
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "RIndex1": {
+      "parent": "RHand",
+      "visible": true,
+      "pivot": [
+        -172.5232,
+        152.13649,
+        3.06799
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "RIndex2": {
+      "parent": "RIndex1",
+      "visible": true,
+      "pivot": [
+        -186.28404,
+        153.15792,
+        3.41254
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "RMiddle1": {
+      "parent": "RHand",
+      "visible": true,
+      "pivot": [
+        -174.95842,
+        146.79228,
+        2.90414
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "RMiddle2": {
+      "parent": "RMiddle1",
+      "visible": true,
+      "pivot": [
+        -187.96384,
+        147.38862,
+        3.3583
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "RRing1": {
+      "parent": "RHand",
+      "visible": true,
+      "pivot": [
+        -174.70412,
+        141.34422,
+        2.89115
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "RRing2": {
+      "parent": "RRing1",
+      "visible": true,
+      "pivot": [
+        -188.37217,
+        142.09533,
+        3.36864
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "RPinky1": {
+      "parent": "RHand",
+      "visible": true,
+      "pivot": [
+        -173.03506,
+        137.07999,
+        2.82968
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "RPinky2": {
+      "parent": "RPinky1",
+      "visible": true,
+      "pivot": [
+        -185.37359,
+        136.7672,
+        3.26
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "Ruler": {
+      "parent": "RHand",
+      "visible": false,
+      "pivot": [
+        -161.63873,
+        143.33501,
+        2.43683
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LArm2": {
+      "parent": "LArm1",
+      "visible": true,
+      "pivot": [
+        95.13125,
+        143.54666,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LArm1": {
+      "parent": "Body",
+      "visible": true,
+      "pivot": [
+        35.39392,
+        143.99347,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LHand": {
+      "parent": "LArm2",
+      "visible": true,
+      "pivot": [
+        160.2473,
+        142.40836,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LThumb1": {
+      "parent": "LHand",
+      "visible": true,
+      "pivot": [
+        160.74317,
+        153.0418,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LThumb2": {
+      "parent": "LThumb1",
+      "visible": true,
+      "pivot": [
+        161.33065,
+        164.7771,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LIndex1": {
+      "parent": "LHand",
+      "visible": true,
+      "pivot": [
+        169.34791,
+        149.33375,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LIndex2": {
+      "parent": "LIndex1",
+      "visible": true,
+      "pivot": [
+        180.92442,
+        149.14786,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LRing1": {
+      "parent": "LHand",
+      "visible": true,
+      "pivot": [
+        171.34744,
+        139.09885,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LRing2": {
+      "parent": "LRing1",
+      "visible": true,
+      "pivot": [
+        185.8645,
+        138.80699,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LMiddle1": {
+      "parent": "LHand",
+      "visible": true,
+      "pivot": [
+        171.65239,
+        144.70487,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LMiddle2": {
+      "parent": "LMiddle1",
+      "visible": true,
+      "pivot": [
+        185.90837,
+        144.19782,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LPinky1": {
+      "parent": "LHand",
+      "visible": true,
+      "pivot": [
+        169.8801,
+        134.9904,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LPinky2": {
+      "parent": "LPinky1",
+      "visible": true,
+      "pivot": [
+        182.56242,
+        134.52097,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "Head": {
+      "parent": "Body",
+      "visible": true,
+      "pivot": [
+        0.0,
+        146.657,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "REyeBrow": {
+      "parent": "Head",
+      "visible": true,
+      "pivot": [
+        -12.77789,
+        202.47481,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "REye": {
+      "parent": "Head",
+      "visible": true,
+      "pivot": [
+        -12.76577,
+        192.00799,
+        36.80632
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LEyeBrow": {
+      "parent": "Head",
+      "visible": true,
+      "pivot": [
+        14.92218,
+        202.89103,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LEye": {
+      "parent": "Head",
+      "visible": true,
+      "pivot": [
+        14.83288,
+        192.21893,
+        36.72599
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "Mouth1": {
+      "parent": "Head",
+      "visible": true,
+      "pivot": [
+        0.0,
+        186.558,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "Mouth2": {
+      "parent": "Head",
+      "visible": true,
+      "pivot": [
+        -0.31175,
+        165.00763,
+        36.03671
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "RLeg1": {
+      "parent": "Body",
+      "visible": true,
+      "pivot": [
+        -20.38147,
+        6.65616,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "RLeg2": {
+      "parent": "RLeg1",
+      "visible": true,
+      "pivot": [
+        -23.256,
+        -72.91293,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "RShoe": {
+      "parent": "RLeg2",
+      "visible": true,
+      "pivot": [
+        -22.98808,
+        -171.70157,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LLeg1": {
+      "parent": "Body",
+      "visible": true,
+      "pivot": [
+        20.00103,
+        6.4884,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LLeg2": {
+      "parent": "LLeg1",
+      "visible": true,
+      "pivot": [
+        23.05455,
+        -71.42779,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "LShoe": {
+      "parent": "LLeg2",
+      "visible": true,
+      "pivot": [
+        22.61331,
+        -170.49381,
+        0.0
+      ],
+      "base": {
+        "pos": [
+          0,
+          0,
+          0
+        ],
+        "rot": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  },
+  "camera": {
+    "yaw": 0,
+    "pitch": 0,
+    "distance": 520,
+    "target": [
+      0,
+      23.57,
+      10
+    ],
+    "orthoScale": 440
+  },
+  "light": {
+    "ambient": 0.38,
+    "intensity": 0.88,
+    "spec": 0.16,
+    "dir": [
+      -0.48,
+      0.62,
+      0.62
+    ]
+  }
+}

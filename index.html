@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Baldi Anim Studio</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand"><span class="brandMark">B</span><div><b>Baldi Anim Studio v10</b><small>Anim8or + GLB rig, keyframe & sprite render</small></div></div>
+    <div class="toolbar" id="toolbar">
+      <button data-tool="select" title="Seçim (Q / Esc)">Q Seç</button>
+      <button data-tool="move" class="active" title="Pozisyon (G)">G Pozisyon</button>
+      <button data-tool="rotate" title="Rotasyon (R)">R Rotasyon</button>
+      <button data-tool="scale" title="Scale (S)">S Scale</button>
+      <span class="sep"></span>
+      <button id="btnUndo" title="Geri al Ctrl+Z">↶</button><button id="btnRedo" title="Yinele Ctrl+Y">↷</button>
+      <span class="sep"></span>
+      <button id="btnRest">Rest</button><button id="btnTPose">Bind / T-Pose</button><button id="btnWave">Wave Preset</button>
+      <span class="sep"></span>
+      <button id="btnSave">Proje Kaydet</button><button id="btnLoad">Proje Aç</button>
+      <input id="projectFile" type="file" accept=".json" hidden />
+    </div>
+    <div class="statusPills"><span id="sourcePill">AN8</span><span id="fpsPill">24 FPS</span><span id="framePill">F 0</span></div>
+  </header>
+
+  <main class="workspace">
+    <aside class="panel leftPanel">
+      <div class="panelTitle">Hiyerarşi <input id="treeSearch" placeholder="parça ara" /></div>
+      <div class="treeTools"><button id="showAll">Tümü Aç</button><button id="hideOthers">Solo</button><button id="showRigBtn" class="active">Rig</button></div>
+      <div class="treeTools assetTools"><button id="addMeshBtn" class="accent">＋ Mesh</button><button id="importGlbBtn" class="accent">＋ GLB</button><button id="deletePartBtn" title="Yalnızca sonradan eklenen parçalar silinebilir">Sil</button><input id="glbFile" type="file" accept=".glb,model/gltf-binary" hidden></div>
+      <div id="tree" class="tree"></div>
+      <div class="panelSection sourceInfo">
+        <h3>Anim8or Kaynağı</h3>
+        <div class="kv"><span>Dosya</span><b id="srcName">-</b></div>
+        <div class="kv"><span>Parça</span><b id="srcParts">-</b></div>
+        <div class="kv"><span>Render</span><b id="srcFilm">-</b></div>
+        <p>Model geometrisi paketteki <code>.an8</code> dosyasından derlenmiştir. Ham kaynak da ZIP içinde duruyor.</p>
+      </div>
+    </aside>
+
+    <section class="center">
+      <div class="viewportBar">
+        <div class="segmented" id="viewMode"><button data-v="solid" class="active">Solid</button><button data-v="wire">Wire</button><button data-v="solidwire">Solid+Wire</button></div>
+        <label><input id="gridToggle" type="checkbox" checked> Grid</label>
+        <label><input id="rigToggle" type="checkbox" checked> Rig</label>
+        <label><input id="orthoToggle" type="checkbox" checked> Ortho</label>
+        <label><input id="transparentView" type="checkbox"> Şeffaf</label>
+        <button id="frontView">Ön</button><button id="fitView">Kadrajla</button>
+        <span class="viewHint">Sol sürük: orbit • Sağ sürük: kamera pan • Sol tık model: seç • Gizmo üstüne gel: eksen vurgulanır • G/R/S • Teker: zoom</span>
+      </div>
+      <div id="viewportWrap" class="viewportWrap">
+        <canvas id="glCanvas"></canvas>
+        <canvas id="overlayCanvas"></canvas>
+        <div id="viewportBadge">Anim8or Figure Bind • G / R / S</div>
+      </div>
+      <div class="timelinePanel">
+        <div class="transport">
+          <span class="timelinePartBadge">Seçili: <b id="timelinePart">Body</b></span><span id="keySelCount" class="keySelBadge">0 key seçili</span>
+          <button id="prevKey">◀◆</button><button id="prevFrame">◀</button><button id="playBtn" class="play">▶</button><button id="nextFrame">▶</button><button id="nextKey">◆▶</button>
+          <label>Frame <input id="frameInput" type="number" min="0" value="0"></label>
+          <label>Süre / Son Frame <input id="durationInput" type="number" min="1" max="100000" value="72" title="Animasyonun toplam son frame’i"></label><button id="durationMinus" title="Süreyi 1 saniye kısalt">−1s</button><button id="durationPlus" title="Süreyi 1 saniye uzat">+1s</button>
+          <label>FPS <input id="fpsInput" type="number" min="1" max="120" value="24"></label>
+          <label><input id="loopToggle" type="checkbox" checked> Loop</label>
+          <label class="autoKeyLabel"><input id="autoKey" type="checkbox" checked> Auto Key <b>OTOMATİK</b></label>
+          <select id="interpSelect" title="Yeni key interpolasyonu"><option value="smooth">Smooth</option><option value="corner">Corner</option><option value="linear">Linear</option><option value="step">Step</option></select>
+          <button id="keyAll">◆ Key All</button><button id="copyKeys" title="Ctrl+C">Kopyala</button><button id="pasteKeys" title="Ctrl+V">Yapıştır</button><button id="deleteKeys" title="Delete">Key Sil</button>
+        </div>
+        <div id="timelineScroll" class="timelineScroll"><canvas id="timelineRulerCanvas" aria-label="Sabit timeline zaman cetveli"></canvas><canvas id="timelineCanvas" tabindex="0" aria-label="Animasyon timeline"></canvas></div>
+        <div class="timelineNav">
+          <button id="tlHome" title="Başlangıca git">|◀</button><button id="tlPrevView" title="Timeline görünümünü sola kaydır">◀◀</button>
+          <input id="timelinePan" type="range" min="0" max="0" step="0.1" value="0" aria-label="Timeline yatay konumu">
+          <button id="tlNextView" title="Timeline görünümünü sağa kaydır">▶▶</button><button id="tlEnd" title="Son frame’e git">▶|</button>
+          <span class="timelineNavLabel">Zoom</span><input id="timelineZoom" type="range" min="2" max="80" step="0.25" value="12" aria-label="Timeline zoom">
+          <button id="tlFit" title="Tüm animasyon süresini görünür alana sığdır">Fit</button><span id="tlViewLabel" class="timelineViewLabel">F0–F72</span>
+        </div>
+      </div>
+    </section>
+
+    <aside class="panel rightPanel">
+      <div class="tabs"><button data-tab="transform" class="active">Transform</button><button data-tab="render">Render</button><button data-tab="curves">Curves</button></div>
+      <div id="tab-transform" class="tab active">
+        <div class="selectionHeader"><div><small>SEÇİLİ PARÇA</small><h2 id="selectedName">Body</h2></div><button id="resetPart">Sıfırla</button></div>
+        <label class="wideLabel">Parent<select id="parentSelect"></select></label>
+        <div class="transformGroup"><h3>Position</h3><div class="xyz" data-group="pos"></div></div>
+        <div class="transformGroup"><h3>Rotation °</h3><div class="xyz" data-group="rot"></div></div>
+        <div class="transformGroup"><h3>Scale</h3><div class="xyz" data-group="scale"></div></div>
+        <div class="transformGroup"><h3>Pivot / Joint</h3><div class="xyz" data-group="pivot"></div><div class="rowBtns"><button id="pivotBBox">BBox Merkez</button><button id="pivotReset">Rig Pivot</button></div></div>
+        <div class="panelSection appearanceSection"><h3>Parça Görünümü <small>materyali bozmaz</small></h3>
+          <label>Renk filtresi <input id="partTint" type="color" value="#ffffff"></label>
+          <label>Filtre gücü <input id="partTintMix" type="range" min="0" max="1" step="0.01" value="0"><output id="partTintMixOut">0%</output></label>
+          <label>Parlaklık <input id="partBrightness" type="range" min="0.1" max="2.5" step="0.01" value="1"><output id="partBrightnessOut">1.00</output></label>
+          <label>Opacity <input id="partOpacity" type="range" min="0" max="1" step="0.01" value="1"><output id="partOpacityOut">1.00</output></label>
+          <div class="buttonGrid"><button id="resetAppearance">Filtreyi Sıfırla</button><button id="focusSelected">Seçileni Kadrajla</button></div>
+        </div>
+        <div class="panelSection"><h3>Pose Araçları</h3><div class="buttonGrid"><button id="copyPose">Pose Kopyala</button><button id="pastePose">Pose Yapıştır</button><button id="mirrorPose">X Mirror</button><button id="resetPose">Tüm Pose Sıfırla</button></div></div>
+        <div class="panelSection"><h3>Onion Skin</h3><label><input id="onionToggle" type="checkbox"> Önceki/Sonraki</label><label>Mesafe <input id="onionStep" type="number" value="2" min="1" max="20"></label><label>Opacity <input id="onionOpacity" type="range" min="0" max="0.6" step="0.01" value="0.16"></label></div>
+      </div>
+
+      <div id="tab-render" class="tab">
+        <div class="panelSection"><h3>Anim8or Classic Işık</h3>
+          <label>Ambient <input id="ambientRange" type="range" min="0" max="1" step="0.01" value="0.2"><output id="ambientOut">0.20</output></label>
+          <label>Key Light <input id="lightRange" type="range" min="0" max="2" step="0.01" value="1"><output id="lightOut">1.00</output></label>
+          <label>Specular <input id="specRange" type="range" min="0" max="2" step="0.01" value="1"><output id="specOut">1.00</output></label>
+          <label>Light X <input id="lightX" type="range" min="-1" max="1" step="0.01" value="-0.45"></label>
+          <label>Light Y <input id="lightY" type="range" min="-1" max="1" step="0.01" value="0.65"></label>
+          <label>Light Z <input id="lightZ" type="range" min="-1" max="1" step="0.01" value="0.75"></label>
+          <div class="buttonGrid"><button id="classicLight">Classic</button><button id="flatLight">Flat</button></div>
+        </div>
+        <div class="panelSection"><h3>Çıktı</h3>
+          <label>Çözünürlük <select id="resolutionPreset"><option value="480x360">Baldi Classic 480×360 (4:3)</option><option value="1280x720">HD 720p 1280×720</option><option value="1920x1080" selected>Full HD 1080p 1920×1080</option><option value="2560x1440">2K / 1440p 2560×1440</option><option value="3840x2160">4K UHD 3840×2160</option><option value="1024x1024">Square 1024×1024</option><option value="custom">Özel</option></select></label>
+          <div class="twoCol"><label>Genişlik<input id="renderW" type="number" min="16" max="4096" value="1920"></label><label>Yükseklik<input id="renderH" type="number" min="16" max="4096" value="1080"></label></div>
+          <label>Render kadrajı <select id="renderFit"><option value="view">Kameradaki görünüm</option><option value="scene" selected>Tüm modeli sabit sığdır</option><option value="selected">Seçili parçayı sığdır</option></select></label>
+          <p class="muted compactNote">PNG/GIF/ZIP gerçek seçili çözünürlükte ve en-boy oranı korunarak üretilir. Varsayılan render aralığı son keyframe’de biter; son frame mutlaka çıktıya eklenir.</p>
+          <label><input id="exportAlpha" type="checkbox" checked> Şeffaf arka plan</label>
+          <label>Arka Plan <input id="bgColor" type="color" value="#999999"></label>
+          <div class="twoCol"><label>Başlangıç<input id="rangeStart" type="number" value="0" min="0"></label><label>Bitiş<input id="rangeEnd" type="number" value="24" min="0"></label></div>
+          <label class="autoRangeLabel"><input id="autoRangeEnd" type="checkbox" checked> Bitişi otomatik son keyframe yap</label>
+          <div class="twoCol"><label>Adım<input id="rangeStep" type="number" value="1" min="1"></label><label>Sheet sütun<input id="sheetCols" type="number" value="6" min="1"></label></div>
+          <label>Dosya öneki<input id="exportPrefix" value="Baldi_Wave"></label>
+          <label>Video encoder <select id="videoEncoderMode"><option value="stable" selected>Stabil WebM (offline frame timestamp)</option><option value="browser">Browser MP4 / WebM (MediaRecorder)</option></select></label>
+          <label><input id="ditherToggle" type="checkbox"> Bayer dither</label>
+          <label>Posterize <select id="posterize"><option value="0">Kapalı</option><option value="32">32 seviye</option><option value="16">16 seviye</option><option value="8">8 seviye</option></select></label>
+          <div class="exportButtons"><button id="exportPng">PNG Frame</button><button id="exportFrames">PNG Frames ZIP</button><button id="exportSheet">Sprite Sheet PNG</button><button id="exportGif">Animated GIF</button><button id="exportWebm">MP4 / WebM Video</button></div>
+          <div id="exportStatus" class="exportStatus">Hazır.</div>
+        </div>
+      </div>
+
+      <div id="tab-curves" class="tab">
+        <div class="panelSection"><h3>Curve Editor</h3>
+          <label>Kanal<select id="curveChannel"><option>rx</option><option>ry</option><option selected>rz</option><option>tx</option><option>ty</option><option>tz</option><option>sx</option><option>sy</option><option>sz</option></select></label>
+          <canvas id="curveCanvas" width="330" height="260"></canvas>
+          <p class="muted">Smooth, Corner, Linear ve Step segmentlerini görürsün. Key tipini timeline’daki key’e sağ tıklayarak da değiştirebilirsin.</p>
+        </div>
+        <div class="panelSection"><h3>Key Listesi</h3><div id="keyList" class="keyList"></div></div>
+      </div>
+    </aside>
+  </main>
+
+  <dialog id="meshDialog" class="studioDialog">
+    <form method="dialog" id="meshForm">
+      <div class="dialogHead"><div><small>HİYERARŞİYE EKLE</small><h2>Primitive Mesh</h2></div><button value="cancel" class="iconBtn">×</button></div>
+      <label>Ad <input id="meshName" value="NewMesh"></label>
+      <label>Tür <select id="meshType"><option value="cube">Cube</option><option value="sphere">Sphere</option><option value="cylinder">Cylinder</option><option value="plane">Plane</option></select></label>
+      <div class="twoCol"><label>Boyut <input id="meshSize" type="number" value="25" min="0.01" step="1"></label><label>Segment <input id="meshSegments" type="number" value="16" min="3" max="64"></label></div>
+      <label>Renk <input id="meshColor" type="color" value="#cccccc"></label>
+      <p class="muted">Yeni mesh seçili parçanın altında oluşturulur ve diğer parçalar gibi G/R/S + Auto Key ile animasyonlanır.</p>
+      <div class="dialogActions"><button value="cancel">İptal</button><button id="createMeshConfirm" value="default" class="accent">Mesh Ekle</button></div>
+    </form>
+  </dialog>
+  <footer class="footer"><span id="statusText">Hazır</span><span>WebGL2 • offline • .an8 kaynak dahil</span></footer>
+</div>
+<script src="model-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

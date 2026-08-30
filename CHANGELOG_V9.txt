@@ -1,0 +1,8 @@
+BaldiAnimStudio V9
+- Smooth interpolation rewritten as frame-spacing-aware cubic Hermite.
+- Interior tangents are calculated in value/frame units, so uneven key spacing no longer creates fake slowdowns at each key.
+- Smooth endpoints use the real adjacent slope instead of easing to zero.
+- Linear remains exact straight interpolation.
+- Step remains a true hold with no transition until the next key.
+- Playback preview now evaluates fractional frames at requestAnimationFrame rate instead of flooring every preview sample to an integer frame.
+  This removes the repeated-frame/stutter feeling in the editor while keeping keyframes frame-based.

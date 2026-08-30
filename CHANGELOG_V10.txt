@@ -1,0 +1,9 @@
+Baldi Anim Studio v10
+
+- Viewport kamera kontrolleri ters çevrildi:
+  * Sol tık + sürük: orbit
+  * Sağ tık + sürük: pan
+  * Sol tek tık: mesh seçimi
+  * Gizmo üzerindeki sol sürük: transform
+- Timeline zaman cetveli ayrı sticky canvas olarak eklendi. Dikey kaydırmada frame/tick numaraları kaybolmaz.
+- Sticky cetvel üzerinden scrub ve Shift+wheel zoom desteklenir.

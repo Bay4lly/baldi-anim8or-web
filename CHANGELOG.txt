@@ -1,0 +1,122 @@
+Baldi Anim Studio v8
+====================
+
+TIMELINE / NAVIGATION
+- Animation duration is editable independently from timeline zoom.
+- Added -1s / +1s duration shortcuts; duration never truncates existing final keyframes.
+- Timeline now uses a movable viewport instead of squeezing all frames into one fixed strip.
+- Shift + wheel zooms around the cursor (2..80 px/frame).
+- Alt + left drag or middle drag pans time horizontally.
+- Added bottom pan slider, previous/next viewport buttons, start/end buttons and Fit.
+- PageUp/PageDown pan the timeline view.
+- Ruler/key selection/copy-paste continue to work in zoomed/panned views.
+
+ANIM8OR MODEL PARSER / MOUTH FIX
+- Replaced fan triangulation of arbitrary n-gons with projected ear-clipping.
+- Added Catmull-Clark subdivision support for Anim8or Subdivision objects.
+- Mouth1 and Mouth2 honor the source Working subdivision level (capped at 2).
+- The long triangular lip shard was parser-generated, not intended source geometry; the corrected mouth no longer reaches the erroneous lower spike bounds.
+- Expensive subdivision is limited to mouth objects so the rest of the rig stays lightweight.
+- Compiler metadata bumped to anim8or-figure-bind-v5 / model version 5.
+
+Baldi Anim Studio v7
+====================
+- Smooth interpolation rebuilt as Blockbench-style Catmull-Rom / cubic Hermite.
+- Linear is true linear interpolation.
+- Step exact-frame bug fixed; it holds then snaps exactly on the destination key.
+- Smooth/Linear mixed segments now follow Blockbench interpolation selection rules.
+- Rotation spline values use shortest-angle unwrapping to prevent sudden long spins.
+- Part color filter now preserves lighting/shading instead of flattening the material.
+- Choosing a tint auto-enables filter strength when it was zero.
+- Added interpolation and tint self-tests under tools/.
+
+Baldi Anim Studio v6
+====================
+
+BLOCKBENCH-STYLE TIMELINE
+- Timeline artık sadece seçili parçanın 3 satırını göstermiyor; animasyonlu parçaları adlarıyla alt alta listeliyor.
+- Her parça altında Position / Rotation / Scale kanalları ayrı satırda gösteriliyor.
+- Parça satırları açılıp kapatılabiliyor ve timeline'dan parçaya tıklayarak seçilebiliyor.
+- Keyframe'ler elmas olarak görünür; seçili keyler sarı vurgulanır.
+- Boş timeline alanında sürükleyerek dikdörtgen seçim yapılabilir. Ctrl/Shift ile seçime ekleme yapılır.
+- Seçili keyframe'leri doğrudan sürükleyerek frame boyunca topluca taşımak mümkündür.
+- Ctrl+C / Ctrl+V / Ctrl+X, Delete ve timeline odaktayken Ctrl+A desteklenir.
+- Kopyalanan keyler parça + kanal + relatif zaman bilgilerini korur; mevcut playhead'den başlayarak yapıştırılır.
+- Yapıştırma animasyon süresinin dışına taşıyorsa duration otomatik genişler.
+- Kopyala / Yapıştır butonları ve seçili key sayacı transport bar'a eklendi.
+- Timeline'da bir kanalın boş yerine çift tıklamak o frame'e transform key'i ekler.
+- Interpolation menüsü birden fazla seçili keyframe'e topluca uygulanabilir.
+- Seçili parçanın timeline satırı otomatik görünür alana kaydırılır.
+
+Baldi Anim Studio v5
+====================
+
+ANIMATION / INTERPOLATION
+- Rotation trackleri shortest-angle interpolation kullanıyor; 170 -> -170 gibi geçişler 0 üzerinden tam tur atmaz.
+- Catmull spline overshoot kaldırıldı. Smooth monotone quintic, Corner cubic, Linear doğrusal, Step hold davranışı kullanır.
+- Playhead bir keyframe üzerindeyken interpolation menüsü o framedeki seçili-part keylerini de günceller.
+
+GIZMO / TRANSFORM
+- Gizmo artık parent/local orientation'dan türetilen gerçek 3D eksenleri kullanır.
+- Rotation halkaları ilgili gerçek Euler eksenine dik 3D plane üzerinde çizilir.
+- Rotation drag mouse ray / plane intersection ve signed 3D angle ile hesaplanır.
+- Joint/gizmo merkezi animasyonlu local Position'ı takip eder.
+- Scale ve move eksen drag hesapları projected-axis uzunluğu ve parent ölçeğini hesaba katar.
+
+TIMELINE
+- Window-level pointer scrub + requestAnimationFrame throttling.
+- Basılı sürükleme daha kararlı; pointer canvas dışına çıksa da frame ileri/geri gider.
+
+GIF
+- GIF Graphic Control Extension disposal=2. Transparan karelerde önceki frame'in görüntüsü arkada kalmaz.
+- Güvenilir sabit 9-bit clear-stream LZW korunuyor.
+
+RENDER RANGE
+- Varsayılan Auto End = son keyframe.
+- Frame step son frame'e bölünmüyorsa final keyframe ayrıca eklenir.
+- Video/PNG/GIF/Sheet aynı düzeltilmiş frameRange kullanır.
+
+VIDEO
+- Yeni Stabil WebM modu: WebCodecs VideoEncoder (VP9/VP8) + offline WebM EBML muxer.
+- Frame timestamp'leri animasyon FPS'inden üretilir; realtime MediaRecorder render süresine bağlı frame freeze/drift oluşmaz.
+- WebCodecs yoksa MediaRecorder MP4/WebM fallback'i devam eder ve zamanlama drift'i telafi edilir.
+
+Baldi Anim Studio v4
+====================
+
+MODEL / AN8 PARSER
+- Object-local material namespace düzeltildi.
+- Mouth2 küçük orphan/default face grubu kaldırıldı.
+- Figure joint ile primitive arasında kalan finger gap için bind-snap düzeltmesi eklendi.
+- Compiler metadata v4 / anim8or-figure-bind-v4.
+
+VIEWPORT / CAMERA
+- LMB click = select, LMB drag = pan davranışı aynı gesture içinde ayrıştırıldı.
+- RMB drag orbit korunuyor.
+- Gizmo axis hover highlight ve daha büyük hit alanı.
+- G move, R rotate, S scale, Q/Esc select.
+
+TIMELINE
+- Pointer capture tabanlı click-drag scrubbing.
+
+RENDER
+- Export canvas resize bug düzeltildi.
+- 480p classic, 720p, 1080p, 1440p, 4K ve square presetleri.
+- Scene/selected/view render-fit seçenekleri.
+- Tüm animasyon frame aralığı için sabit fit, aspect ratio korunuyor.
+- GIF LZW random-color bozulması için güvenilir clear-stream encoder.
+- MediaRecorder MP4 denemesi + WebM fallback.
+
+INSPECTOR
+- Parçaya özel tint, tint mix, brightness, opacity.
+- Kaynak materyali değiştirmez.
+
+CUSTOM ASSETS
+- +Mesh primitive creator.
+- +GLB glTF 2.0 binary importer.
+- GLB node hierarchy, PBR base color, embedded texture.
+- Skinned GLB için dominant-joint rigid segment desteği.
+- Custom/GLB parçalar normal hierarchy + G/R/S + Auto Key akışına bağlandı.
+
+PROJECT FORMAT
+- Project JSON v2 custom meshes, GLB parts, appearance ve runtime materials kaydeder.
